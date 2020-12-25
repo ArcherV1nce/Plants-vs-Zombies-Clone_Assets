@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class LoadLeverController : MonoBehaviour
 {
     [SerializeField] private string levelName;
-
+    [SerializeField] private int timeToWait;
+        
     public void LoadLevel()
     {
 
@@ -15,6 +16,18 @@ public class LoadLeverController : MonoBehaviour
             SceneManager.LoadSceneAsync(levelName);
         }
 
+    }
+
+    public void LoadWithDelay()
+    {
+        StartCoroutine(DelayLoadLevel());
+    }
+
+    private IEnumerator DelayLoadLevel()
+    {
+        yield return new WaitForSeconds(timeToWait);
+        SceneManager.LoadSceneAsync(levelName);
+        yield return 0;
     }
 
 }
