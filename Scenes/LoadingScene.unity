@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 1217078206}
   - component: {fileID: 1217078205}
   m_Layer: 5
-  m_Name: SplashImage
+  m_Name: LoadSceneImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 1480917083}
   - component: {fileID: 1480917085}
   - component: {fileID: 1480917084}
+  - component: {fileID: 1480917086}
   m_Layer: 5
   m_Name: LoadingText
   m_TagString: Untagged
@@ -581,3 +582,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480917082}
   m_CullTransparentMesh: 0
+--- !u!114 &1480917086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480917082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f28a28da4966e844804d4dd3a6ea43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingTextObject: {fileID: 1480917084}
+  loadingText: Loading
+  textUpdateTime: 0.1
+  isLoaded: 0
+  leverController: {fileID: 0}
