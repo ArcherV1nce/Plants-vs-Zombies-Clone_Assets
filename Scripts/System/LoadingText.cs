@@ -24,7 +24,10 @@ public class LoadingText : MonoBehaviour
 
     private void Update()
     {
-        isLoaded = leverController.GetLoadLevelStatus();
+        if (leverController)
+        {
+            isLoaded = leverController.GetLoadLevelStatus();
+        }
     }
 
     private IEnumerator LoadingTextUpdate()
@@ -56,7 +59,6 @@ public class LoadingText : MonoBehaviour
     /*
      * Загрузка должна проиходить в той сцене, в которой находится объект с текстом.
      * До этого должна загрузиться загрузочная сцена. 
-     * Обновить курутину загрузкой сцены с текстом, после которой осуществляется загрузка следующей сцены.
      */
 
 

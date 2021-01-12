@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadLeverController : MonoBehaviour
 {
+    [SerializeField] private string loadingScreenName = "LoadingScene";
     [SerializeField] private string levelName = "SplashScreen";
     [SerializeField] private int timeToWait = 5;
     [SerializeField] private bool sceneLoadingFinished = false;
@@ -13,8 +14,12 @@ public class LoadLeverController : MonoBehaviour
     /*
     * Загрузка должна проиходить в той сцене, в которой находится объект с текстом.
      * До этого должна загрузиться загрузочная сцена. 
-     * Обновить курутину загрузкой сцены с текстом, после которой осуществляется загрузка следующей сцены.
      */
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void LoadLevel()
     {
@@ -48,11 +53,26 @@ public class LoadLeverController : MonoBehaviour
 
     private IEnumerator LoadScreenOperationProcess()
     {
+        AsyncOperation tempOp = SceneManager.LoadSceneAsync(loadingScreenName);
+        while(SceneManager.GetActiveScene().name != loadingScreenName)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        #region Editor check if Loading Scene is working.
+        /*
+        if (SceneManager.GetActiveScene().name == loadingScreenName)
+        {
+            UnityEditor.EditorApplication.isPaused = true;
+            yield return new WaitForEndOfFrame();
+        }
+        */
+        #endregion
+
         AsyncOperation sceneLoadingOperation = SceneManager.LoadSceneAsync(levelName);
-        DontDestroyOnLoad(this.gameObject);
-        sceneLoadingFinished = sceneLoadingOperation.isDone;
+        Debug.Log(sceneLoadingOperation.progress);
         while (!sceneLoadingFinished)
         {
+            Debug.Log(sceneLoadingOperation.progress);
             sceneLoadingFinished = sceneLoadingOperation.isDone;
             yield return new WaitForEndOfFrame();
         }
@@ -65,7 +85,4 @@ public class LoadLeverController : MonoBehaviour
     {
         return sceneLoadingFinished;
     }
-
-
-
 }
