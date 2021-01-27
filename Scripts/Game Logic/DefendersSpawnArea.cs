@@ -1,22 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DefendersSpawnArea : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] private ResourcesController resources;
+    [SerializeField] private TextMeshProUGUI starsTextMP = null;
+
     [Header("Debug")]
     [SerializeField] private Defender defenderPrefab = null;
+    [SerializeField] private int defenderCost = 0;
 
+    private void Awake()
+    {
+        if(!resources)
+        {
+            resources = FindObjectOfType<ResourcesController>();        
+        }
+    }
+
+    private void Start()
+    {
+        resources.ResourcesAddStars(60);
+        Debug.Log("Added extra stars.");
+        ShowResourceAmountStars();
+    }
     private void OnMouseDown()
     {
         //Debug.Log("Mouse was clickedinside of game area.");
-        SpawnDefender(GetSquareClick());
+        SpendStars(defenderCost);
+    }
+
+    private void ShowResourceAmountStars()
+    {
+        if (starsTextMP != null)
+        {
+            starsTextMP.text = "Stars: \n" + resources.ResourcesGetStars().ToString();
+        }
+    }
+
+    public void AddResourceStars(int starsAdd)
+    {
+        resources.ResourcesAddStars(starsAdd);
+        ShowResourceAmountStars();
+    }
+
+    public void SpendStars(int starsSpend)
+    {
+        if (resources.ResourcesSpendStars(starsSpend))
+        {
+            ShowResourceAmountStars();
+            SpawnDefender(GetSquareClick());
+        }
+        
     }
 
     #region Spawn Area Methods
     public void SetSelectedDefender(Defender defenderSelected)
     {
         defenderPrefab = defenderSelected;
+        defenderCost = defenderSelected.GetDefenderPrice();
     }
 
     private Vector2 GetSquareClick()

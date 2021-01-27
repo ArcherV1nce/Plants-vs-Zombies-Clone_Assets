@@ -8,8 +8,18 @@ public class AttackerSpawner : MonoBehaviour
     [SerializeField] private bool spawning = true;
     [SerializeField] private float minSpawnDelay = 1f;
     [SerializeField] private float maxSpawnDelay = 5f;
+    [SerializeField] private ResourcesController resourcesController;
+
     [Header("Objects")]
     [SerializeField] private Attacker atackerPrefab = null;
+
+    [Header("Debug")]
+    [SerializeField] private List<Attacker> spawnedList;
+
+    private void Awake()
+    {
+        resourcesController = FindObjectOfType<ResourcesController>();
+    }
 
     private void Start()
     {

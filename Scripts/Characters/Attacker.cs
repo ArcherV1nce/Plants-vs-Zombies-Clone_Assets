@@ -8,6 +8,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] 
     //[Range(0f, 6f)] private float movementSpeed = 1f;
     [Range(0f, 6f)] private float currentSpeed = 1f;
+    [SerializeField] [Range(0, 15)] private int starsValue = 1;
     //private enum state {spawn, walk, attack};
     [SerializeField] private int state = 1;
 
@@ -25,5 +26,9 @@ public class Attacker : MonoBehaviour
         }
     }
 
+    public int GetRewardOnDestroy()
+    {
+        return starsValue;
+    }
 
 }

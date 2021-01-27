@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6354451872651126816}
   - component: {fileID: -7580095956323516964}
   m_Layer: 10
-  m_Name: NPC_Lizard
+  m_Name: Enemy_Lizard
   m_TagString: Attacker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
