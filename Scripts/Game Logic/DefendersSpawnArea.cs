@@ -6,8 +6,7 @@ using TMPro;
 public class DefendersSpawnArea : MonoBehaviour
 {
     [Header("Parameters")]
-    [SerializeField] private ResourcesController resources;
-    [SerializeField] private TextMeshProUGUI starsTextMP = null;
+    [SerializeField] private ResourcesController resController;
 
     [Header("Debug")]
     [SerializeField] private Defender defenderPrefab = null;
@@ -15,17 +14,16 @@ public class DefendersSpawnArea : MonoBehaviour
 
     private void Awake()
     {
-        if(!resources)
+        if(!resController)
         {
-            resources = FindObjectOfType<ResourcesController>();        
+            resController = FindObjectOfType<ResourcesController>();        
         }
     }
 
     private void Start()
     {
-        resources.ResourcesAddStars(60);
+        resController.ResourcesAddStars(60);
         Debug.Log("Added extra stars.");
-        ShowResourceAmountStars();
     }
     private void OnMouseDown()
     {
@@ -33,25 +31,15 @@ public class DefendersSpawnArea : MonoBehaviour
         SpendStars(defenderCost);
     }
 
-    private void ShowResourceAmountStars()
-    {
-        if (starsTextMP != null)
-        {
-            starsTextMP.text = "Stars: \n" + resources.ResourcesGetStars().ToString();
-        }
-    }
-
     public void AddResourceStars(int starsAdd)
     {
-        resources.ResourcesAddStars(starsAdd);
-        ShowResourceAmountStars();
+        resController.ResourcesAddStars(starsAdd);
     }
 
     public void SpendStars(int starsSpend)
     {
-        if (resources.ResourcesSpendStars(starsSpend))
+        if (resController.ResourcesSpendStars(starsSpend))
         {
-            ShowResourceAmountStars();
             SpawnDefender(GetSquareClick());
         }
         
@@ -84,6 +72,7 @@ public class DefendersSpawnArea : MonoBehaviour
         var defender = Instantiate(
             defenderPrefab, defenderPosition, Quaternion.identity)
             as Defender;
+        defender.SetResourcesController(resController);
     }
 
     #endregion

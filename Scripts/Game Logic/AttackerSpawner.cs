@@ -9,12 +9,13 @@ public class AttackerSpawner : MonoBehaviour
     [SerializeField] private float minSpawnDelay = 1f;
     [SerializeField] private float maxSpawnDelay = 5f;
     [SerializeField] private ResourcesController resourcesController;
+    [SerializeField] private string lineName = "Line ";
 
     [Header("Objects")]
     [SerializeField] private Attacker atackerPrefab = null;
 
     [Header("Debug")]
-    [SerializeField] private List<Attacker> spawnedList;
+    [SerializeField] private List<Attacker> enemiesSpawnedOnLine;
 
     private void Awake()
     {
@@ -32,7 +33,11 @@ public class AttackerSpawner : MonoBehaviour
         {
             if (atackerPrefab != null)
             {
-                Instantiate(atackerPrefab, transform.position, transform.rotation);
+                Attacker atk = Instantiate(atackerPrefab, transform.position, transform.rotation);
+                atk.GetComponent<Health>().SetResourcesController(resourcesController);
+                enemiesSpawnedOnLine.Add(atk);
+                atk.SetSpawner(this);
+                atk.transform.parent = transform;
             }
             
             yield return new WaitForSeconds
@@ -41,6 +46,11 @@ public class AttackerSpawner : MonoBehaviour
         /*this.StopCoroutine(SpawnAtacker());
          * Stop Coroutine without destroying gameObject.
          */
+    }
+
+    public void RemoveAttackerFormList(Attacker atk)
+    {
+        enemiesSpawnedOnLine.Remove(atk);
     }
 
 }

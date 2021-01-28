@@ -8,6 +8,9 @@ public class Defender : MonoBehaviour
     [SerializeField] private int defenderCost = 20;
     [SerializeField] private int defenderHealth = 100;
 
+    [Header("Debug")]
+    [SerializeField] private ResourcesController resController = null;
+
     public int GetDefenderPrice()
     {
         return defenderCost;
@@ -18,4 +21,16 @@ public class Defender : MonoBehaviour
         return defenderHealth;
     }
 
+    public void SetResourcesController(ResourcesController controller)
+    {
+        resController = controller;
+    }
+
+    public void AddStars(int stars)
+    {
+        if(resController)
+        {
+            resController.ResourcesAddStars(stars);           
+        }
+    }
 }

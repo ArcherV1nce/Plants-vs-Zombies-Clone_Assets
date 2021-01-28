@@ -146,4 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   damage: 100
+  lifeTime: 4
+  isPenetrating: 0
   damageReciverTag: []

@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField] private int healthPoints = 100;
     [SerializeField] private GameObject deathVFX = null;
 
+    [Header("Debug")]
+    [SerializeField] private ResourcesController resourcesController;
+
 
     public void ReciveDamage(int damage)
     {
@@ -23,9 +26,19 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void SetResourcesController(ResourcesController controller)
+    {
+        resourcesController = controller;
+    }
+
     private void TriggerDeathVFX()
     {
         GameObject deathVFXObject = Instantiate(deathVFX, transform.position, Quaternion.identity);
+        if(GetComponent<Attacker>())
+        {
+            resourcesController.ResourcesAddStars(GetComponent<Attacker>().GetRewardOnDestroy());
+            GetComponent<Attacker>().RemoveAtacker();
+        }
         Destroy(deathVFXObject, 2f);
     }
 }

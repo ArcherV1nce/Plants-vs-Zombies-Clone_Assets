@@ -259,8 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22151f5329654804eb29292cdc7b00db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources: {fileID: 1473161894}
-  starsTextMP: {fileID: 1632400722}
+  resController: {fileID: 0}
   defenderPrefab: {fileID: 0}
   defenderCost: 0
 --- !u!1 &529310013
@@ -370,7 +369,10 @@ MonoBehaviour:
   spawning: 1
   minSpawnDelay: 2.5
   maxSpawnDelay: 10
+  resourcesController: {fileID: 1473161894}
+  lineName: Line 5
   atackerPrefab: {fileID: 6354451872651126816, guid: 891a2c6fc41962740b72b34afd203843, type: 3}
+  enemiesSpawnedOnLine: []
 --- !u!4 &551583292
 Transform:
   m_ObjectHideFlags: 0
@@ -417,7 +419,10 @@ MonoBehaviour:
   spawning: 1
   minSpawnDelay: 2.5
   maxSpawnDelay: 10
+  resourcesController: {fileID: 1473161894}
+  lineName: Line 3
   atackerPrefab: {fileID: 6354451872651126816, guid: 891a2c6fc41962740b72b34afd203843, type: 3}
+  enemiesSpawnedOnLine: []
 --- !u!4 &667239400
 Transform:
   m_ObjectHideFlags: 0
@@ -829,6 +834,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
     stars: 0
+    starsText: "Stars: \n "
+  starsText: {fileID: 0}
 --- !u!4 &1473161895
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +882,10 @@ MonoBehaviour:
   spawning: 1
   minSpawnDelay: 2.5
   maxSpawnDelay: 10
+  resourcesController: {fileID: 1473161894}
+  lineName: Line 4
   atackerPrefab: {fileID: 6354451872651126816, guid: 891a2c6fc41962740b72b34afd203843, type: 3}
+  enemiesSpawnedOnLine: []
 --- !u!4 &1515731680
 Transform:
   m_ObjectHideFlags: 0
@@ -922,7 +932,10 @@ MonoBehaviour:
   spawning: 1
   minSpawnDelay: 2.5
   maxSpawnDelay: 10
+  resourcesController: {fileID: 1473161894}
+  lineName: Line 2
   atackerPrefab: {fileID: 6354451872651126816, guid: 891a2c6fc41962740b72b34afd203843, type: 3}
+  enemiesSpawnedOnLine: []
 --- !u!4 &1526362278
 Transform:
   m_ObjectHideFlags: 0
@@ -1458,7 +1471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeColor: {r: 1, g: 1, b: 1, a: 255}
   passiveColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 255}
-  defenderPrefab: {fileID: -767112101964142206, guid: d363afcac422fd24a90844c0e42a3562, type: 3}
+  defenderPrefab: {fileID: 5917288443489667556, guid: d363afcac422fd24a90844c0e42a3562, type: 3}
   buttonRenderer: {fileID: 0}
   spawner: {fileID: 0}
   defenderButtons: []
@@ -1510,4 +1523,7 @@ MonoBehaviour:
   spawning: 1
   minSpawnDelay: 2.5
   maxSpawnDelay: 10
+  resourcesController: {fileID: 1473161894}
+  lineName: Line 1
   atackerPrefab: {fileID: 6354451872651126816, guid: 891a2c6fc41962740b72b34afd203843, type: 3}
+  enemiesSpawnedOnLine: []

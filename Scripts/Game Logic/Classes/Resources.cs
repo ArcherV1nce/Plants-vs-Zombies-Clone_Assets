@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable] public class Resources
 {
     public int stars;
+    public string starsText = "Stars: \n ";
 
     public bool SpendStars(int starsToSpend)
     {
