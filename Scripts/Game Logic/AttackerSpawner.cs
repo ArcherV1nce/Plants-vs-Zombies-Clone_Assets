@@ -15,7 +15,7 @@ public class AttackerSpawner : MonoBehaviour
     [SerializeField] private Attacker atackerPrefab = null;
 
     [Header("Debug")]
-    [SerializeField] private List<Attacker> enemiesSpawnedOnLine;
+    [SerializeField] private List<Attacker> enemiesSpawnedOnLine = null;
 
     private void Awake()
     {
@@ -52,5 +52,31 @@ public class AttackerSpawner : MonoBehaviour
     {
         enemiesSpawnedOnLine.Remove(atk);
     }
+
+    public string GetLineName()
+    {
+        return lineName;
+    }
+
+    public bool IsAttackOngoing()
+    {
+        if (enemiesSpawnedOnLine.Count < 1)
+        {
+            return false;
+        }
+        else return true;
+
+        //Alternative way to do it
+        /*
+        if (transform.childCount < 1)
+        {
+            return false;
+        }
+        else return true;
+        */
+
+    }
+
+
 
 }
