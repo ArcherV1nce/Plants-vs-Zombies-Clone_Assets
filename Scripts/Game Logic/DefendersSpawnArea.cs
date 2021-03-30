@@ -11,6 +11,7 @@ public class DefendersSpawnArea : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private Defender defenderPrefab = null;
     [SerializeField] private int defenderCost = 0;
+    [SerializeField] private List<Defender> defenders;
 
     private void Awake()
     {
@@ -28,7 +29,10 @@ public class DefendersSpawnArea : MonoBehaviour
     private void OnMouseDown()
     {
         //Debug.Log("Mouse was clickedinside of game area.");
-        SpendStars(defenderCost);
+        if (CheckSqareAvailability(GetSquareClick()))
+        {
+            SpendStars(defenderCost);
+        }
     }
 
     public void AddResourceStars(int starsAdd)
@@ -69,10 +73,23 @@ public class DefendersSpawnArea : MonoBehaviour
 
     private void SpawnDefender(Vector2 defenderPosition)
     {
-        var defender = Instantiate(
-            defenderPrefab, defenderPosition, Quaternion.identity)
-            as Defender;
-        defender.SetResourcesController(resController);
+            var defender = Instantiate(
+                defenderPrefab, defenderPosition, Quaternion.identity)
+                 as Defender;
+            defender.SetResourcesController(resController);
+            defenders.Add(defender);
+    }
+
+    private bool CheckSqareAvailability(Vector2 position)
+    {
+        Vector2 pos;
+        bool temp_true = true;
+        foreach(Defender d in defenders)
+        {
+            pos = d.transform.position;
+            if (position == pos) { temp_true = false; }
+        }
+        return temp_true;
     }
 
     #endregion

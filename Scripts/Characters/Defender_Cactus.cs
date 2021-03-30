@@ -15,7 +15,6 @@ public class Defender_Cactus : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private GameObject projectile = null;
-    [SerializeField] 
 
     private void Awake()
     {
@@ -26,11 +25,13 @@ public class Defender_Cactus : MonoBehaviour
     {
         if(lineSpawner.IsAttackOngoing())
         {
-            Debug.Log("Pew-Pew");
+            //Debug.Log("Pew-Pew");
+            this.GetComponent<Animator>().SetBool("isAttacking", true);
         }
         else
         {
-            Debug.Log("On line " + lineSpawner.GetLineName() + " I rest.");
+            this.GetComponent<Animator>().SetBool("isAttacking", false);
+            //Debug.Log("On line " + lineSpawner.GetLineName() + " I rest.");
         }
     }
 

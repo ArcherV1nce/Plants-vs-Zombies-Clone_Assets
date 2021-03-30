@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingOrder: 5
   m_Sprite: {fileID: -613669871504447759, guid: 225e5302df5b92542861a2914d34d3eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.57, y: 1.26}
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defenderCost: 10
   defenderHealth: 100
+  resController: {fileID: 0}
 --- !u!114 &5917288443489667483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +180,7 @@ MonoBehaviour:
   damage: 25
   damageReciverTag:
   - Attacker
+  lineSpawner: {fileID: 0}
   projectile: {fileID: 4586101058286671188, guid: af7c2a46e4ae5144ba6a430ac7b8f37a, type: 3}
 --- !u!61 &21438825971651213
 BoxCollider2D:
@@ -204,7 +206,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1}
+  m_Size: {x: 1.15, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &2412137693946054208
 Rigidbody2D:
