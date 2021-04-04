@@ -29,6 +29,7 @@ public class AttackerSpawner : MonoBehaviour
 
     private IEnumerator SpawnAtacker()
     {
+        yield return new WaitUntil(() => spawning);
         while(spawning)
         {
             if (atackerPrefab != null)
@@ -77,6 +78,14 @@ public class AttackerSpawner : MonoBehaviour
 
     }
 
+    public void StartSpawning()
+    {
+        spawning = true;
+    }
 
+    public void StopSpawning ()
+    {
+        spawning = false;
+    }
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Defender_Cactus : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private Transform muzzlePos = null;

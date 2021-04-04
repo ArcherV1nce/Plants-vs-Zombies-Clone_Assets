@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DefenderButton : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DefenderButton : MonoBehaviour
     [SerializeField] private Color activeColor = new Color(255, 255, 255, 255);
     [SerializeField] private Color passiveColor = new Color(160, 160, 160, 255);
     [SerializeField] private Defender defenderPrefab = null;
+    [SerializeField] private TextMeshPro priceTextUI = null;
 
     [Header("Debug")]
     [SerializeField] private SpriteRenderer buttonRenderer;
@@ -73,11 +75,20 @@ public class DefenderButton : MonoBehaviour
     {
         buttonColor = passiveColor;
         buttonRenderer.color = buttonColor;
+        if (priceTextUI) 
+        { 
+            priceTextUI.enabled = false;
+        }
     }
     private void SetButtonColorActive()
     {
         buttonColor = activeColor;
         buttonRenderer.color = buttonColor;
+        if (priceTextUI)
+        {
+            priceTextUI.enabled = true;
+            priceTextUI.text = defenderPrefab.GetDefenderPrice().ToString();
+        }
     }
     #endregion
 }

@@ -11,7 +11,7 @@ public class DefendersSpawnArea : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private Defender defenderPrefab = null;
     [SerializeField] private int defenderCost = 0;
-    [SerializeField] private List<Defender> defenders;
+    [SerializeField] private List<Defender> defenders = new List<Defender>();
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class DefendersSpawnArea : MonoBehaviour
 
     private void Start()
     {
-        resController.ResourcesAddStars(60);
+        resController.ResourcesAddStars(40);
         Debug.Log("Added extra stars.");
     }
     private void OnMouseDown()
