@@ -15,6 +15,7 @@ public class Attacker : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private AttackerSpawner spawner = null;
+    [SerializeField] private GameObject currentTarget = null;
 
     private void Awake()
     {
@@ -38,6 +39,17 @@ public class Attacker : MonoBehaviour
     public int GetRewardOnDestroy()
     {
         return starsValue;
+    }
+
+    public void Attack(GameObject target)
+    {
+        GetComponent<Animator>().SetBool("isAttacking", true);
+        currentTarget = target;
+    }
+
+    public void SetAnimatorToSpawned()
+    {
+        GetComponent<Animator>().SetBool("finishedSpawning", true);
     }
 
     public void SetSpawner(AttackerSpawner spawner)
